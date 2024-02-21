@@ -1,2 +1,2 @@
 # pipucate
-Repositorio para guardar todas mis cosas
+Repositorio para guardar todos mis proyectos de java, mysql, postgre, etc.
