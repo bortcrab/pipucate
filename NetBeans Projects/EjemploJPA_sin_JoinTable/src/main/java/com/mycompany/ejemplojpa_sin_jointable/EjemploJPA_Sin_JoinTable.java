@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.ejemplojpa_sinjointable;
+package com.mycompany.ejemplojpa_sin_jointable;
 
 import daos.JuegoDAO;
 import daos.JugadorDAO;
