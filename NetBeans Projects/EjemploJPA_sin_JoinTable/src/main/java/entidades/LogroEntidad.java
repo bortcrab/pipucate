@@ -12,23 +12,22 @@ import javax.persistence.*;
  * @author bortc
  */
 @Entity
-@Table(name = "tblLogros")
+@Table (name = "tblLogros")
 public class LogroEntidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "idLogro", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "nombre", nullable = false)
+    @Column (name = "nombre", nullable = false)
     private String nombre;
     
-    @Column(name = "puntuacion", nullable = false)
+    @Column (name = "puntuacion", nullable = false)
     private String puntuacion;
     
     @ManyToOne
-    @JoinColumn(name = "idJuego", nullable = false)
+    @JoinColumn (name = "idJuego", nullable = false)
     private JuegoEntidad juego;
 
     public LogroEntidad(String nombre, String puntuacion) {

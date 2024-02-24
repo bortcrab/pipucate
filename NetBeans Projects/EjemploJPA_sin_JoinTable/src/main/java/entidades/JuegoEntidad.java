@@ -15,22 +15,22 @@ import javax.persistence.*;
  * @author bortc
  */
 @Entity
-@Table(name = "tblJuegos")
+@Table (name = "tblJuegos")
 public class JuegoEntidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "idJuego")
+    @Column (name = "idJuego")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "desarrolladora", nullable = false)
+    @Column (name = "desarrolladora", nullable = false)
     private String desarrolladora;
     
-    @Column(name = "nombre", nullable = false)
+    @Column (name = "nombre", nullable = false)
     private String nombre;
     
-    @OneToMany(mappedBy = "juego", cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "juego", cascade = CascadeType.ALL)
     private List<LogroEntidad> listaLogros;
     
     @ManyToMany(mappedBy = "juegos")

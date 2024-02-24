@@ -9,40 +9,26 @@ import javax.persistence.*;
 
 /**
  *
- * @author bortc
+ * @author jorge
  */
 @Entity
-@Table(name = "tblLogros")
-public class LogroEntidad implements Serializable {
+@Table(name = "carros")
+public class CarroEntidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "idLogro", nullable = false)
+    @Column(name = "idCarro")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre", length = 50, nullable = false)
     private String nombre;
-    
-    @Column(name = "puntuacion", nullable = false)
-    private String puntuacion;
-    
-    @ManyToOne
-    @JoinColumn(name = "idJuego", nullable = false)
-    private JuegoEntidad juego;
 
-    public LogroEntidad(String nombre, String puntuacion) {
-        this.nombre = nombre;
-        this.puntuacion = puntuacion;
+    public CarroEntidad() {
     }
 
-    public LogroEntidad(String nombre, String puntuacion, JuegoEntidad juego) {
+    public CarroEntidad(String nombre) {
         this.nombre = nombre;
-        this.puntuacion = puntuacion;
-        this.juego = juego;
-    }
-    
-    public LogroEntidad() {
     }
 
     public Long getId() {
@@ -61,22 +47,6 @@ public class LogroEntidad implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getPuntuacion() {
-        return puntuacion;
-    }
-
-    public void setPuntuacion(String puntuacion) {
-        this.puntuacion = puntuacion;
-    }
-
-    public JuegoEntidad getJuego() {
-        return juego;
-    }
-
-    public void setJuego(JuegoEntidad juego) {
-        this.juego = juego;
-    }
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -87,10 +57,10 @@ public class LogroEntidad implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LogroEntidad)) {
+        if (!(object instanceof CarroEntidad)) {
             return false;
         }
-        LogroEntidad other = (LogroEntidad) object;
+        CarroEntidad other = (CarroEntidad) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -99,7 +69,7 @@ public class LogroEntidad implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.LogroEntidad[ id=" + id + " ]";
+        return "entidades.CarroEntidad[ id=" + id + " ]";
     }
     
 }
