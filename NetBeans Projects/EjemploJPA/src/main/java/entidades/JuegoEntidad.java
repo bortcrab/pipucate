@@ -5,7 +5,9 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 /**
@@ -19,7 +21,7 @@ public class JuegoEntidad implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Column (name = "idJuego")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column (name = "desarrolladora", nullable = false)
@@ -28,21 +30,35 @@ public class JuegoEntidad implements Serializable {
     @Column (name = "nombre", nullable = false)
     private String nombre;
     
-    @OneToMany (mappedBy = "juego", cascade = CascadeType.PERSIST)
+    @OneToMany (mappedBy = "juego", cascade = CascadeType.ALL)
     private List<LogroEntidad> listaLogros;
-
+    
+    @ManyToMany(mappedBy = "juegos")
+    Set<JugadorEntidad> jugadores;
+    
     public JuegoEntidad() {
-    }
-
-    public JuegoEntidad(String desarrolladora, String nombre) {
-        this.desarrolladora = desarrolladora;
-        this.nombre = nombre;
     }
 
     public JuegoEntidad(String desarrolladora, String nombre, List<LogroEntidad> listaLogros) {
         this.desarrolladora = desarrolladora;
         this.nombre = nombre;
         this.listaLogros = listaLogros;
+        for (LogroEntidad logro : listaLogros) {
+            logro.setJuego(this);
+        }
+    }
+    
+    public JuegoEntidad(String desarrolladora, String nombre, List<LogroEntidad> listaLogros, Set<JugadorEntidad> jugadores) {
+        this.desarrolladora = desarrolladora;
+        this.nombre = nombre;
+        this.listaLogros = listaLogros;
+        for (LogroEntidad logro : listaLogros) {
+            logro.setJuego(this);
+        }
+        this.jugadores = jugadores;
+        for (JugadorEntidad jugador : jugadores) {
+            jugador.getJuegos().add(this);
+        }
     }
     
     public Long getId() {
@@ -75,6 +91,14 @@ public class JuegoEntidad implements Serializable {
 
     public void setListaLogros(List<LogroEntidad> listaLogros) {
         this.listaLogros = listaLogros;
+    }
+
+    public Set<JugadorEntidad> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(Set<JugadorEntidad> jugadores) {
+        this.jugadores = jugadores;
     }
     
     @Override

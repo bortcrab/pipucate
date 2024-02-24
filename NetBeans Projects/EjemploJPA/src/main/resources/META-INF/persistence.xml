@@ -5,6 +5,8 @@
     <class>entidades.CarroEntidad</class>
     <class>entidades.JuegoEntidad</class>
     <class>entidades.LogroEntidad</class>
+    <class>entidades.JugadorEntidad</class>
+    <class>entidades.DireccionEntidad</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ejemplojpa?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

@@ -1,4 +1,9 @@
-entidades\LogroEntidad.class
+daos\JugadorDAO.class
+entidades\Sexo.class
 com\mycompany\ejemplojpa\EjemploJPA.class
+entidades\DireccionEntidad.class
 entidades\JuegoEntidad.class
+entidades\JugadorEntidad.class
+entidades\LogroEntidad.class
+daos\JuegoDAO.class
 entidades\CarroEntidad.class

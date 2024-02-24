@@ -17,7 +17,7 @@ public class LogroEntidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column (name = "nombre", nullable = false)
@@ -29,6 +29,11 @@ public class LogroEntidad implements Serializable {
     @ManyToOne
     @JoinColumn (name = "idJuego", nullable = false)
     private JuegoEntidad juego;
+
+    public LogroEntidad(String nombre, String puntuacion) {
+        this.nombre = nombre;
+        this.puntuacion = puntuacion;
+    }
 
     public LogroEntidad(String nombre, String puntuacion, JuegoEntidad juego) {
         this.nombre = nombre;
