@@ -5,7 +5,7 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
@@ -30,6 +30,10 @@ public class JuegoEntidad implements Serializable {
     @Column(name = "nombre", nullable = false)
     private String nombre;
     
+    @Column(name = "lanzamiento", nullable = false)
+    @Temporal (TemporalType.DATE)
+    private Calendar lanzamiento;
+    
     @OneToMany(mappedBy = "juego", cascade = CascadeType.ALL)
     private List<LogroEntidad> listaLogros;
     
@@ -39,18 +43,20 @@ public class JuegoEntidad implements Serializable {
     public JuegoEntidad() {
     }
 
-    public JuegoEntidad(String desarrolladora, String nombre, List<LogroEntidad> listaLogros) {
+    public JuegoEntidad(String desarrolladora, String nombre, Calendar lanzamiento, List<LogroEntidad> listaLogros) {
         this.desarrolladora = desarrolladora;
         this.nombre = nombre;
+        this.lanzamiento = lanzamiento;
         this.listaLogros = listaLogros;
         for (LogroEntidad logro : listaLogros) {
             logro.setJuego(this);
         }
     }
     
-    public JuegoEntidad(String desarrolladora, String nombre, List<LogroEntidad> listaLogros, Set<JugadorEntidad> jugadores) {
+    public JuegoEntidad(String desarrolladora, String nombre, Calendar lanzamiento, List<LogroEntidad> listaLogros, Set<JugadorEntidad> jugadores) {
         this.desarrolladora = desarrolladora;
         this.nombre = nombre;
+        this.lanzamiento = lanzamiento;
         this.listaLogros = listaLogros;
         for (LogroEntidad logro : listaLogros) {
             logro.setJuego(this);
@@ -85,6 +91,14 @@ public class JuegoEntidad implements Serializable {
         this.nombre = nombre;
     }
 
+    public Calendar getLanzamiento() {
+        return lanzamiento;
+    }
+
+    public void setLanzamiento(Calendar lanzamiento) {
+        this.lanzamiento = lanzamiento;
+    }
+    
     public List<LogroEntidad> getListaLogros() {
         return listaLogros;
     }

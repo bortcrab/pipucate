@@ -25,18 +25,18 @@ public class LogroEntidad implements Serializable {
     private String nombre;
     
     @Column(name = "puntuacion", nullable = false)
-    private String puntuacion;
+    private Integer puntuacion;
     
     @ManyToOne
     @JoinColumn(name = "idJuego", nullable = false)
     private JuegoEntidad juego;
 
-    public LogroEntidad(String nombre, String puntuacion) {
+    public LogroEntidad(String nombre, Integer puntuacion) {
         this.nombre = nombre;
         this.puntuacion = puntuacion;
     }
 
-    public LogroEntidad(String nombre, String puntuacion, JuegoEntidad juego) {
+    public LogroEntidad(String nombre, Integer puntuacion, JuegoEntidad juego) {
         this.nombre = nombre;
         this.puntuacion = puntuacion;
         this.juego = juego;
@@ -61,11 +61,11 @@ public class LogroEntidad implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getPuntuacion() {
+    public Integer getPuntuacion() {
         return puntuacion;
     }
 
-    public void setPuntuacion(String puntuacion) {
+    public void setPuntuacion(Integer puntuacion) {
         this.puntuacion = puntuacion;
     }
 

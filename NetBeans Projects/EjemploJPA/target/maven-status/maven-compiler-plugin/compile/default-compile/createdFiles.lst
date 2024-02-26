@@ -6,4 +6,5 @@ entidades\JuegoEntidad.class
 entidades\JugadorEntidad.class
 entidades\LogroEntidad.class
 daos\JuegoDAO.class
+daos\LogroDAO.class
 entidades\CarroEntidad.class
