@@ -7,6 +7,7 @@ package entidades;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -38,7 +39,7 @@ public class JuegoEntidad implements Serializable {
     private List<LogroEntidad> listaLogros;
     
     @ManyToMany(mappedBy = "juegos")
-    Set<JugadorEntidad> jugadores;
+    private Set<JugadorEntidad> jugadores;
     
     public JuegoEntidad() {
     }
@@ -114,27 +115,29 @@ public class JuegoEntidad implements Serializable {
     public void setJugadores(Set<JugadorEntidad> jugadores) {
         this.jugadores = jugadores;
     }
-    
+
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof JuegoEntidad)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        JuegoEntidad other = (JuegoEntidad) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final JuegoEntidad other = (JuegoEntidad) obj;
+        return Objects.equals(this.id, other.id);
     }
-
+    
     @Override
     public String toString() {
         return "entidades.JuegoEntidad[ id=" + id + " ]";

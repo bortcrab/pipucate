@@ -38,12 +38,12 @@ public class JugadorEntidad implements Serializable {
     @JoinColumn(name = "idDireccion", referencedColumnName = "idDireccion")
     private DireccionEntidad direccion;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "tblJugadores_Juegos",
             joinColumns = @JoinColumn(name = "idJugador"),
             inverseJoinColumns = @JoinColumn(name = "idJuego"))
-    Set<JuegoEntidad> juegos;
+    private Set<JuegoEntidad> juegos;
 
     public JugadorEntidad(String pseudonimo, Sexo sexo, Calendar fechaNacimiento, DireccionEntidad direccion, Set<JuegoEntidad> juegos) {
         this.pseudonimo = pseudonimo;
