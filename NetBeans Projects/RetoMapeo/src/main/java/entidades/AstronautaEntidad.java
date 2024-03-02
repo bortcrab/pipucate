@@ -40,7 +40,7 @@ public class AstronautaEntidad implements Serializable {
     @Column(name = "sexo", nullable = false)
     private String sexo;
     
-    @OneToOne(mappedBy = "astronauta")
+    @OneToOne(mappedBy = "astronauta", cascade = CascadeType.PERSIST)
     private MuerteEntidad muerte;
     
     @OneToMany(mappedBy = "astronauta", cascade = CascadeType.PERSIST)
