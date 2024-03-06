@@ -7,6 +7,7 @@
     <class>entidades.NaveEntidad</class>
     <class>entidades.VueloEntidad</class>
     <class>entidades.AstronautaNaveEntidad</class>
+    <class>com.mycompany.retomapeo.AstronautaDTO</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/retomapeo?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
