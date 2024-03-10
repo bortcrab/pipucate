@@ -38,8 +38,8 @@ public class RetoMapeo {
 //        entityManager.getTransaction().begin();
 //
 //        // Creamos los astronautas.
-//        AstronautaEntidad astronauta1 = new AstronautaEntidad("Pipucate", "Pepihuate", "Bepis", "A+", 19, "Hombre", new ArrayList<>());
-//        AstronautaEntidad astronauta2 = new AstronautaEntidad("Ambrose", "Kenny", "Smith", "B-", 35, "Hombre", new MuerteEntidad(), new ArrayList<>());
+//        AstronautaEntidad astronauta1 = new AstronautaEntidad("Pipucate", "Pepihuate", "Bepis", "A+", 19, "Masculino", new ArrayList<>());
+//        AstronautaEntidad astronauta2 = new AstronautaEntidad("Ambrose", "Kenny", "Smith", "B-", 35, "Masculino", new MuerteEntidad(), new ArrayList<>());
 //        
 //        // Creamos una instancia de fecha.
 //        Calendar fecha = new GregorianCalendar(2024, 2, 29, 4, 24, 55);
@@ -160,26 +160,19 @@ public class RetoMapeo {
 //                          nombre1, nombre2, nombreNave, capacidad, fechaSalida,
 //                          astronautaMuerto, fechaMuerte);
         
-        // CONSULTAS CON CRITERIA QUERY
-        // Construimos una instancia de CriteriaBuilder.
+        //----CONSULTAS CON CRITERIA QUERY----//
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        // Creamos un objeto CriteriaQuery.
+        
         CriteriaQuery<AstronautaEntidad> criteriaQuery = criteriaBuilder.createQuery(AstronautaEntidad.class);
-        // Creamos una instancia instanciadel tipo Root para representar la entidad
-        // principal de la consulta.
+        
         Root<AstronautaEntidad> root = criteriaQuery.from(AstronautaEntidad.class);
         
         
         // CONSULTA 1
-        // Mediante el método select(), se especifica que la consulta seleccionará
-        // todos los campos de VueloEntidad.
         criteriaQuery.select(root);
         
-        // Ordenamos los resultados con base a la fecha y hora de salida de manera
-        // descendente para obtener el último vuelo.
         criteriaQuery.where(criteriaBuilder.gt(root.get("edad"), 40));
 
-        // Se manda a ejecutar la consulta, limitamos los resultados a 1 y obtenemos el vuelo.
         List<AstronautaEntidad> astronautas = entityManager.createQuery(criteriaQuery).getResultList();
         
         System.out.println("\nCONSULTA 1 CON CRITERIA QUERY");
@@ -191,15 +184,10 @@ public class RetoMapeo {
         
         
         // CONSULTA 2
-        // Mediante el método select(), se especifica que la consulta seleccionará
-        // todos los campos de VueloEntidad.
         criteriaQuery.select(root);
         
-        // Ordenamos los resultados con base a la fecha y hora de salida de manera
-        // descendente para obtener el último vuelo.
         criteriaQuery.where(criteriaBuilder.equal(root.get("sexo"), "Femenino"));
 
-        // Se manda a ejecutar la consulta, limitamos los resultados a 1 y obtenemos el vuelo.
         astronautas = entityManager.createQuery(criteriaQuery).getResultList();
         
         System.out.println("\nCONSULTA 2 CON CRITERIA QUERY");
@@ -209,9 +197,7 @@ public class RetoMapeo {
             System.out.println(astroDTO);
         }
         
-        ////////////////////////////////////////////////////////////////////////
-        
-        // CONSULTAS CON JPQL
+        //----CONSULTAS CON JPQL----//
         // CONSULTA 1
         String consulta = """
                           SELECT a
@@ -219,7 +205,6 @@ public class RetoMapeo {
                           WHERE a.edad > :edad
                           """;
 
-        // Se manda a ejecutar la consulta, limitamos los resultados a 1 y obtenemos el vuelo.
         TypedQuery<AstronautaEntidad> query = entityManager.createQuery(consulta, AstronautaEntidad.class);
         
         query.setParameter("edad", 40);
@@ -241,7 +226,6 @@ public class RetoMapeo {
                    WHERE a.sexo = :sexo
                    """;
 
-        // Se manda a ejecutar la consulta, limitamos los resultados a 1 y obtenemos el vuelo.
         query = entityManager.createQuery(consulta, AstronautaEntidad.class);
         
         query.setParameter("sexo", "Femenino");
@@ -254,7 +238,43 @@ public class RetoMapeo {
             AstronautaDTO astroDTO = new AstronautaDTO(astronauta);
             System.out.println(astroDTO);
         }
+
+        // CONSULTA 3
+        // Ejemplo con group by
+        consulta = """
+                   SELECT NEW com.mycompany.retomapeo.SexoDTO(a.sexo, COUNT(a))
+                   FROM AstronautaEntidad a
+                   GROUP BY a.sexo
+                   """;
         
+        TypedQuery<SexoDTO> tQuery = entityManager.createQuery(consulta, SexoDTO.class);
+        
+        List<SexoDTO> results = tQuery.getResultList();
+        
+        System.out.println("\nCONSULTA 3 CON JPQL");
+        System.out.println("Cantidad de astronautas por sexo:");
+        for (SexoDTO result : results) {
+            
+            System.out.println(result);
+        }
+        
+        // Ejemplo de GROUP BY con CriteriaQuery
+        System.out.println("Consulta GROUP BY con CriteriaQuery");
+        CriteriaBuilder cbd = entityManager.getCriteriaBuilder();
+        CriteriaQuery cq = cbd.createQuery();
+        Root<AstronautaEntidad> raiz3 = cq.from(AstronautaEntidad.class);
+        cq.select(cbd.construct(SexoDTO.class, 
+                raiz3.get("sexo"), 
+                cbd.count(raiz3)));
+        cq.groupBy(raiz3.get("sexo"));
+        TypedQuery<SexoDTO> consultaTipada = entityManager.createQuery(cq);
+        List<SexoDTO> sexos = consultaTipada.getResultList();
+        
+        System.out.println("\nCONSULTA 3 CON CRITERIA QUERY");
+        System.out.println("Cantidad de astronautas por sexo:");
+        for (SexoDTO sexo : sexos) {
+            System.out.println(sexo);
+        }
         
         // Cerramos el entity manager y la fábrica.
         entityManager.close();
