@@ -8,7 +8,7 @@ package com.mycompany.retomapeo;
  *
  * @author bortc
  */
-class SexoDTO {
+public class SexoDTO {
     private String sexo;
     private Long cantidad;
     

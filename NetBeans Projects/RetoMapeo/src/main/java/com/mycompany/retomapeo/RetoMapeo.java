@@ -259,7 +259,7 @@ public class RetoMapeo {
         }
         
         // Ejemplo de GROUP BY con CriteriaQuery
-        System.out.println("Consulta GROUP BY con CriteriaQuery");
+        System.out.println("\nConsulta GROUP BY con CriteriaQuery");
         CriteriaBuilder cbd = entityManager.getCriteriaBuilder();
         CriteriaQuery cq = cbd.createQuery();
         Root<AstronautaEntidad> raiz3 = cq.from(AstronautaEntidad.class);
