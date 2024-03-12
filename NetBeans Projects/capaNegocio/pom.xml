@@ -49,12 +49,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>capaPersistencia</artifactId>
+            <artifactId>RetoMapeo</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>RetoMapeo</artifactId>
+            <artifactId>capaPersistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

@@ -7,8 +7,7 @@ package principal;
 import com.mycompany.retomapeo.AstronautaDTO;
 import entidades.AstronautaEntidad;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.eclipse.persistence.history.AsOfClause;
 
 /**
  *
@@ -32,26 +31,5 @@ public class AgregarAstronauta {
                 astronautaDTO.getSexo(),
                 new ArrayList<>());
         return astronautaEntidad;
-    }
-    
-    public void obtenerAstronauta(Long id) throws Exception {
-        try {
-            AstronautaEntidad astronautaEntidad = astronautaDAO.obtenerPorId(id);
-            AstronautaDTO astronautaDTO = convertirAstronautaEntidad(astronautaEntidad);
-        } catch (Exception ex) {
-            throw new Exception(ex.getMessage());
-        }
-    }
-    
-    public AstronautaDTO convertirAstronautaEntidad(AstronautaEntidad astronautaEntidad) {
-        AstronautaDTO astronautaDTO = new AstronautaDTO(
-                astronautaEntidad.getNombres(),
-                astronautaEntidad.getApellidoPaterno(),
-                astronautaEntidad.getApellidoMaterno(),
-                astronautaEntidad.getEdad(),
-                astronautaEntidad.getSexo(),
-                astronautaEntidad.getTipoSangre());
-        astronautaDTO.setId(astronautaEntidad.getId());
-        return astronautaDTO;
     }
 }

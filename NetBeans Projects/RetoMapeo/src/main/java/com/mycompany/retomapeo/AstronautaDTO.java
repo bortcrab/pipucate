@@ -83,5 +83,16 @@ public class AstronautaDTO {
     public void setSangre(String sangre) {
         this.sangre = sangre;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + id +
+               "\nNombre: " + nombres +
+               "\nApellido paterno: " + apellidoP +
+               "\nApellido materno: " + apellidoM +
+               "\nEdad: " + edad +
+               "\nSexo: " + sexo +
+               "\nTipo de sangre: " + sangre;
+    }
     
 }
