@@ -1,3 +1,6 @@
+
+import principal.AgregarAstronauta;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
@@ -9,6 +12,6 @@
 public class CapaPresentacion {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        AgregarAstronauta = new AgregarAstronauta();
     }
 }

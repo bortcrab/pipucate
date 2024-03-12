@@ -24,3 +24,5 @@
 hs_err_pid*
 replay_pid*
 /NetBeans Projects/EjemploJPA_sin_JoinTable/target/
+/NetBeans Projects/capaPersistencia/target/
+/NetBeans Projects/capaNegocio/target/

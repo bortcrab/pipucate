@@ -1,14 +1,13 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package principal;
 
-import com.mycompany.retomapeo.AstronautaDTO;
-
 /**
  *
- * @author Juventino López García - 00000248547
+ * @author bortc
  */
-public class CapaNegocio {
+public class ObtenerAstronauta {
     
 }
