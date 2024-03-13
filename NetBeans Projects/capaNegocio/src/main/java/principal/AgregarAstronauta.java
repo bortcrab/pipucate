@@ -6,8 +6,6 @@ package principal;
 
 import com.mycompany.retomapeo.AstronautaDTO;
 import entidades.AstronautaEntidad;
-import java.util.ArrayList;
-import org.eclipse.persistence.history.AsOfClause;
 
 /**
  *
@@ -28,8 +26,8 @@ public class AgregarAstronauta {
                 astronautaDTO.getApellidoM(),
                 astronautaDTO.getSangre(),
                 astronautaDTO.getEdad(),
-                astronautaDTO.getSexo(),
-                new ArrayList<>());
+                astronautaDTO.getSexo()
+        );
         return astronautaEntidad;
     }
 }
